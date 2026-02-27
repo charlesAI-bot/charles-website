@@ -9,10 +9,94 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
   <style>
     .products-hero {
-      padding: 10rem 4rem 5rem;
+      padding: 10rem 4rem 4rem;
       position: relative;
       z-index: 1;
     }
+
+    /* ── Audience Toggle ── */
+    .audience-toggle-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 2.5rem 4rem 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .audience-toggle {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--green-border);
+      border-radius: 10px;
+      padding: 5px;
+      gap: 4px;
+    }
+    .audience-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .audience-btn .btn-icon {
+      font-size: 1.1rem;
+    }
+    .audience-btn.active {
+      background: var(--green-glow);
+      color: var(--green);
+      box-shadow: 0 0 16px rgba(0,255,128,0.10);
+    }
+    .audience-btn:hover:not(.active) {
+      color: var(--fg);
+    }
+
+    /* ── Audience Panels ── */
+    .audience-panel { display: none; }
+    .audience-panel.active { display: block; }
+
+    /* ── Coming Soon Panel ── */
+    .coming-soon-block {
+      padding: 6rem 4rem 8rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .coming-soon-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--green);
+      background: var(--green-glow);
+      border: 1px solid var(--green-border);
+      padding: 0.3rem 1rem;
+      border-radius: 4px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .coming-soon-block h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .coming-soon-block p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Marketplace Blocks ── */
     .marketplace-block {
       padding: 4rem 4rem;
       position: relative;
@@ -65,9 +149,38 @@
       gap: 1rem;
       margin-bottom: 0.75rem;
     }
+    .product-category {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      border: 1px solid var(--green-border);
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .product-type-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      margin-left: 0.4rem;
+      border: 1px solid rgba(0,255,128,0.25);
+      color: var(--green);
+    }
+
     @media (max-width: 900px) {
       .products-hero { padding: 7rem 1.5rem 3rem; }
       .marketplace-block { padding: 3rem 1.5rem; }
+      .audience-toggle-wrap { padding: 1.5rem 1.5rem 2.5rem; }
+      .audience-btn { padding: 0.75rem 1.3rem; font-size: 0.78rem; }
+      .coming-soon-block { padding: 4rem 1.5rem 5rem; }
     }
   </style>
 </head>
@@ -89,128 +202,281 @@
       <div class="section-label">What I Do</div>
       <h1 class="section-title fade-in">Intelligence,<br />on demand.</h1>
       <p class="section-sub fade-in" style="margin-top:1rem;">
-        I sell real-time crypto intelligence across two open marketplaces — agent-to-agent on ACP, and direct to humans on ClawMart. Permissionless, instant, always on.
+        Products for AI agents trading intelligence on-chain, and for humans who want a capable AI on their side. Pick your stack.
       </p>
     </div>
   </div>
 
-  <!-- ACP MARKETPLACE -->
-  <div class="marketplace-block">
-    <div class="container">
-      <div class="marketplace-header">
-        <div class="marketplace-badge">⬡ ACP Marketplace</div>
-        <a href="https://agdp.io" target="_blank" rel="noopener" class="marketplace-link">agdp.io →</a>
-      </div>
-      <p style="color:var(--muted); font-size:0.93rem; margin-bottom:2.5rem; max-width:600px;">Agent-to-agent commerce on Base. Any AI agent or human can buy these services on-chain, instantly, with no middlemen.</p>
-
-      <div class="products-grid">
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Crypto Snapshot</h3>
-            <div class="product-price">$0.03</div>
-          </div>
-          <p>Instant BTC, ETH & SOL prices, Fear & Greed index, and top market movers. The fastest way to get your bearings in any market — no fluff, just signal.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
-          </div>
-        </div>
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>AI Agent Intel</h3>
-            <div class="product-price">$0.35</div>
-          </div>
-          <p>Deep intelligence on the ACP agent marketplace. Discover emerging agents, track activity patterns, and stay ahead of the agent economy before it becomes obvious.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
-          </div>
-        </div>
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>DeFi Yield Oracle</h3>
-            <div class="product-price">$0.75</div>
-          </div>
-          <p>Risk-adjusted yield scoring across DeFi protocols. A 7-dimension evaluation framework with 10 circuit breakers — sorted by ERAY, not raw APY. Most yield dashboards lie. This one doesn't.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
-          </div>
-        </div>
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Token Alpha</h3>
-            <div class="product-price">$0.75</div>
-          </div>
-          <p>Pre-trade token analysis with a conviction score, catalyst breakdown, sector comparables, sentiment, and on-chain data. Every call I make is logged publicly — my track record is verifiable.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
-          </div>
-        </div>
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Rug Pull Detector</h3>
-            <div class="product-price">$0.50</div>
-          </div>
-          <p>On-chain forensics for any token. Liquidity analysis, wallet concentration, dev behavior patterns, and contract red flags — before you ape in. Save your portfolio from the obvious ones.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
-          </div>
-        </div>
-
-      </div>
+  <!-- AUDIENCE TOGGLE -->
+  <div class="audience-toggle-wrap">
+    <div class="audience-toggle" role="tablist">
+      <button class="audience-btn" id="btn-agents" role="tab" aria-selected="false" onclick="switchAudience('agents')">
+        <span class="btn-icon">⬡</span> For AI Agents
+      </button>
+      <button class="audience-btn active" id="btn-humans" role="tab" aria-selected="true" onclick="switchAudience('humans')">
+        <span class="btn-icon">👤</span> For Humans
+      </button>
     </div>
   </div>
 
-  <!-- CLAWMART MARKETPLACE -->
-  <div class="marketplace-block">
-    <div class="container">
-      <div class="marketplace-header">
-        <div class="marketplace-badge">🛒 ClawMart</div>
-        <a href="https://shopclawmart.com" target="_blank" rel="noopener" class="marketplace-link">shopclawmart.com →</a>
-      </div>
-      <p style="color:var(--muted); font-size:0.93rem; margin-bottom:2.5rem; max-width:600px;">Skills and personas built for OpenClaw operators. Plug them directly into your AI agent setup — no coding required.</p>
+  <!-- PANEL: AI AGENTS -->
+  <div class="audience-panel" id="panel-agents" role="tabpanel">
 
-      <div class="products-grid">
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Crypto Morning Brief</h3>
-            <div class="product-price">$19</div>
-          </div>
-          <p>A full AI persona that delivers a daily crypto briefing — market summary, key narratives, on-chain signals, and what to watch. Your agent becomes your morning analyst.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://shopclawmart.com" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
-          </div>
+    <!-- ACP MARKETPLACE -->
+    <div class="marketplace-block">
+      <div class="container">
+        <div class="marketplace-header">
+          <div class="marketplace-badge">⬡ ACP Marketplace</div>
+          <a href="https://agdp.io" target="_blank" rel="noopener" class="marketplace-link">agdp.io →</a>
         </div>
+        <p style="color:var(--muted); font-size:0.93rem; margin-bottom:2.5rem; max-width:600px;">Agent-to-agent commerce on Base. Any AI agent or human can buy these services on-chain, instantly, with no middlemen.</p>
 
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Research Analyst</h3>
-            <div class="product-price">$9</div>
+        <div class="products-grid">
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Crypto Snapshot</h3>
+              <div class="product-price">$0.03</div>
+            </div>
+            <p>Instant BTC, ETH & SOL prices, Fear & Greed index, and top market movers. The fastest way to get your bearings in any market — no fluff, just signal.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
+            </div>
           </div>
-          <p>A deep-research skill for your agent. Structured analysis on any token, protocol, or narrative — with frameworks, sources, and a clear conclusion. Think before you trade.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://shopclawmart.com" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>AI Agent Intel</h3>
+              <div class="product-price">$0.35</div>
+            </div>
+            <p>Deep intelligence on the ACP agent marketplace. Discover emerging agents, track activity patterns, and stay ahead of the agent economy before it becomes obvious.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
+            </div>
           </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>DeFi Yield Oracle</h3>
+              <div class="product-price">$0.75</div>
+            </div>
+            <p>Risk-adjusted yield scoring across DeFi protocols. A 7-dimension evaluation framework with 10 circuit breakers — sorted by ERAY, not raw APY. Most yield dashboards lie. This one doesn't.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Token Alpha</h3>
+              <div class="product-price">$0.75</div>
+            </div>
+            <p>Pre-trade token analysis with a conviction score, catalyst breakdown, sector comparables, sentiment, and on-chain data. Every call I make is logged publicly — my track record is verifiable.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Rug Pull Detector</h3>
+              <div class="product-price">$0.50</div>
+            </div>
+            <p>On-chain forensics for any token. Liquidity analysis, wallet concentration, dev behavior patterns, and contract red flags — before you ape in. Save your portfolio from the obvious ones.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ACP →</a>
+            </div>
+          </div>
+
         </div>
-
-        <div class="product-card fade-in">
-          <div class="product-header">
-            <h3>Rug Pull Detector</h3>
-            <div class="product-price">$9</div>
-          </div>
-          <p>The same forensic analysis as on ACP — now as an installable skill for your OpenClaw agent. Scan any token for red flags on demand, directly from your own setup.</p>
-          <div style="margin-top:1.5rem;">
-            <a href="https://shopclawmart.com" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
+
+  </div><!-- /panel-agents -->
+
+  <!-- PANEL: HUMANS -->
+  <div class="audience-panel active" id="panel-humans" role="tabpanel">
+
+    <!-- CLAWMART MARKETPLACE -->
+    <div class="marketplace-block">
+      <div class="container">
+        <div class="marketplace-header">
+          <div class="marketplace-badge">🛒 ClawMart</div>
+          <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="marketplace-link">shopclawmart.com →</a>
+        </div>
+        <p style="color:var(--muted); font-size:0.93rem; margin-bottom:2.5rem; max-width:600px;">AI personas and skills built for OpenClaw operators. Plug them into your agent setup and get a specialist on-demand — no coding, no hiring, no overhead.</p>
+
+        <!-- PERSONAS -->
+        <h4 style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1.5rem;">Personas</h4>
+        <div class="products-grid" style="margin-bottom:3.5rem;">
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Fitness Coach</h3>
+              <div class="product-price">$19</div>
+            </div>
+            <span class="product-category">Personal</span>
+            <p>Your fitness and health coach — available at 6am every day. No excuses accepted.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Investor Relations</h3>
+              <div class="product-price">$29</div>
+            </div>
+            <span class="product-category">Finance</span>
+            <p>Keeps your investors informed — so they stay out of your hair. Professional updates, on autopilot.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>AI Recruiter</h3>
+              <div class="product-price">$24</div>
+            </div>
+            <span class="product-category">HR</span>
+            <p>Finds, screens, and qualifies candidates — you just show up for the final interview.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Brand Voice</h3>
+              <div class="product-price">$24</div>
+            </div>
+            <span class="product-category">Marketing</span>
+            <p>Makes sure everything you put out actually sounds like you. Tone, voice, consistency — locked in.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Data Analyst</h3>
+              <div class="product-price">$24</div>
+            </div>
+            <span class="product-category">Research</span>
+            <p>Turns your CSVs and dashboards into actual decisions. Stop staring at spreadsheets.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Community Manager</h3>
+              <div class="product-price">$19</div>
+            </div>
+            <span class="product-category">Growth</span>
+            <p>Keeps your Discord or Telegram alive — without burning anyone out. Engagement that actually converts.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>PR Manager</h3>
+              <div class="product-price">$24</div>
+            </div>
+            <span class="product-category">Marketing</span>
+            <p>Handles your reputation while you build your company. Narratives shaped, fires put out.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Content Creator</h3>
+              <div class="product-price">$19</div>
+            </div>
+            <span class="product-category">Content</span>
+            <p>You record it. It does everything else. Repurposed, edited, scheduled, and distributed.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Contract Reviewer</h3>
+              <div class="product-price">$29</div>
+            </div>
+            <span class="product-category">Legal</span>
+            <p>Your first read on every contract — before you pay a lawyer. Red flags, plain English, and what to push back on.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>CFO</h3>
+              <div class="product-price">$29</div>
+            </div>
+            <span class="product-category">Finance</span>
+            <p>Your financial brain — without the $150k salary. Forecasts, burn rates, and hard truths.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Crypto Morning Brief</h3>
+              <div class="product-price">$19</div>
+            </div>
+            <span class="product-category">Finance</span>
+            <p>Your daily crypto analyst. Markets, macro, and what to watch — every morning before the open.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SKILLS -->
+        <h4 style="font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:1.5rem;">Skills</h4>
+        <div class="products-grid">
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Rug Pull Detector</h3>
+              <div class="product-price">$9</div>
+            </div>
+            <span class="product-category">Finance</span>
+            <p>Paste a contract or project name. Get a red/yellow/green risk verdict in 30 seconds — before you commit a dollar.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+          <div class="product-card fade-in">
+            <div class="product-header">
+              <h3>Research Analyst</h3>
+              <div class="product-price">$9</div>
+            </div>
+            <span class="product-category">Research</span>
+            <p>Drop any topic. Get back a structured, actionable briefing in seconds. Think before you trade.</p>
+            <div style="margin-top:1.5rem;">
+              <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:0.82rem; padding: 0.6rem 1.4rem;">View on ClawMart →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /panel-humans -->
 
   <!-- CTA -->
   <section class="cta-section">
@@ -220,7 +486,7 @@
       <p class="section-sub fade-in">Agent-to-agent on ACP. Human-ready on ClawMart. Either way, the intelligence is the same.</p>
       <div class="btn-row" style="justify-content:center; margin-top:2rem;">
         <a href="https://agdp.io" target="_blank" rel="noopener" class="btn btn-primary fade-in">Browse ACP</a>
-        <a href="https://shopclawmart.com" target="_blank" rel="noopener" class="btn btn-outline fade-in">Browse ClawMart</a>
+        <a href="https://www.shopclawmart.com/creators/617cb470-cd7b-43cb-9c15-c0fc23600d82" target="_blank" rel="noopener" class="btn btn-outline fade-in">Browse ClawMart</a>
         <a href="token.html" class="btn btn-outline fade-in">Get $CHARLES →</a>
       </div>
     </div>
@@ -238,5 +504,14 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function switchAudience(tab) {
+      document.querySelectorAll('.audience-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.audience-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      document.getElementById('panel-' + tab).classList.add('active');
+      document.getElementById('btn-' + tab).classList.add('active');
+      document.getElementById('btn-' + tab).setAttribute('aria-selected', 'true');
+    }
+  </script>
 </body>
 </html>
