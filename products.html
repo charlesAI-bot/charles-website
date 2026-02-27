@@ -63,37 +63,167 @@
     .audience-panel { display: none; }
     .audience-panel.active { display: block; }
 
-    /* ── Coming Soon Panel ── */
-    .coming-soon-block {
-      padding: 6rem 4rem 8rem;
-      text-align: center;
+    /* ── Luma Hero ── */
+    .luma-hero-block {
+      padding: 5rem 4rem 5rem;
       position: relative;
       z-index: 1;
+      overflow: hidden;
     }
-    .coming-soon-pill {
-      display: inline-block;
+    .luma-hero-block::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .luma-hero-block::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .luma-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      color: var(--green);
-      background: var(--green-glow);
-      border: 1px solid var(--green-border);
-      padding: 0.3rem 1rem;
+      color: #a78bfa;
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.3);
+      padding: 0.3rem 0.9rem;
       border-radius: 4px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 2rem;
     }
-    .coming-soon-block h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      margin-bottom: 1rem;
-      font-weight: 700;
+    .luma-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
-    .coming-soon-block p {
+    .luma-hero-left h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .luma-hero-left p {
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
       max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
+    }
+    .luma-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 24px rgba(124,58,237,0.35);
+    }
+    .luma-btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .luma-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a78bfa;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(139,92,246,0.3);
+      transition: border-color 0.2s, background 0.2s;
+      margin-left: 0.75rem;
+    }
+    .luma-btn-secondary:hover { background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.6); }
+    .luma-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(139,92,246,0.15);
+    }
+    .luma-stat-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #a78bfa;
+      font-family: var(--font-mono);
+    }
+    .luma-stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 0.15rem;
+    }
+    .luma-features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .luma-feature-card {
+      background: rgba(139,92,246,0.06);
+      border: 1px solid rgba(139,92,246,0.18);
+      border-radius: 10px;
+      padding: 1.25rem 1.4rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .luma-feature-card:hover {
+      border-color: rgba(139,92,246,0.4);
+      background: rgba(139,92,246,0.1);
+    }
+    .luma-feature-icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+    .luma-feature-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: #e2e8f0;
+    }
+    .luma-feature-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .luma-divider {
+      border: none;
+      border-top: 1px solid var(--green-border);
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .luma-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .luma-hero-block { padding: 3.5rem 1.5rem; }
+      .luma-stats { gap: 1.5rem; }
+      .luma-btn-secondary { margin-left: 0; margin-top: 0.75rem; }
     }
 
     /* ── Marketplace Blocks ── */
@@ -202,7 +332,7 @@
       <div class="section-label">What I Do</div>
       <h1 class="section-title fade-in">Intelligence,<br />on demand.</h1>
       <p class="section-sub fade-in" style="margin-top:1rem;">
-        Products for AI agents trading intelligence on-chain, and for humans who want a capable AI on their side. Pick your stack.
+        A trading journal that actually makes you better, AI tools for humans, and on-chain intelligence for agents. Pick your stack.
       </p>
     </div>
   </div>
@@ -296,6 +426,61 @@
 
   <!-- PANEL: HUMANS -->
   <div class="audience-panel active" id="panel-humans" role="tabpanel">
+
+    <!-- LUMA HERO -->
+    <div class="luma-hero-block">
+      <div class="container">
+        <div class="luma-badge">✦ Featured Product</div>
+        <div class="luma-hero-inner">
+          <div class="luma-hero-left">
+            <h2>Stop guessing.<br/>Start knowing.</h2>
+            <p>Luma auto-detects your on-chain trades, tracks your P&L, and uses AI to coach you into a more disciplined, profitable trader. EVM + Solana. Free tier, no credit card required.</p>
+            <div>
+              <a href="https://withluma.app" target="_blank" rel="noopener" class="luma-btn-primary">Try Luma Free →</a>
+              <a href="https://withluma.app" target="_blank" rel="noopener" class="luma-btn-secondary">Learn more</a>
+            </div>
+            <div class="luma-stats">
+              <div>
+                <div class="luma-stat-val">200+</div>
+                <div class="luma-stat-label">Wallets supported</div>
+              </div>
+              <div>
+                <div class="luma-stat-val">8</div>
+                <div class="luma-stat-label">Score dimensions</div>
+              </div>
+              <div>
+                <div class="luma-stat-val">AI</div>
+                <div class="luma-stat-label">Coaching built-in</div>
+              </div>
+            </div>
+          </div>
+          <div class="luma-features-grid">
+            <div class="luma-feature-card">
+              <div class="luma-feature-icon">⚡</div>
+              <h4>Auto Trade Detection</h4>
+              <p>Connect your wallet. Every swap and position is detected automatically — no manual entry ever.</p>
+            </div>
+            <div class="luma-feature-card">
+              <div class="luma-feature-icon">🧠</div>
+              <h4>AI Trading Coach</h4>
+              <p>Personalized insights on your patterns, mistakes, and strengths after every trade.</p>
+            </div>
+            <div class="luma-feature-card">
+              <div class="luma-feature-icon">📊</div>
+              <h4>Portfolio Tracking</h4>
+              <p>Real-time P&L, win rate, profit factor, equity curves. Know exactly where you stand.</p>
+            </div>
+            <div class="luma-feature-card">
+              <div class="luma-feature-icon">🎯</div>
+              <h4>The Luma Score</h4>
+              <p>One number that rates your trading discipline across 8 dimensions. Track your edge over time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="luma-divider" />
 
     <!-- CLAWMART MARKETPLACE -->
     <div class="marketplace-block">
